@@ -1,0 +1,426 @@
+/*###################################################################################################
+#				Majicko 2.3.2 ©2008-2019 Bandwise LLC All Rights Reserved,							#
+#								http://www.Majicko.com												#
+#																									#
+#				This file may not be redistributed in whole or significant part.					#
+#				---------------- MAJICKO IS NOT FREE SOFTWARE ----------------						#
+#									http://www.majicko.com											#
+#																									#
+###################################################################################################*/
+
+/**
+* This file contains styles and appearances for popup dialogues and widgets
+**/
+
+.pseudolink {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #0066FF;
+	cursor: pointer;
+}
+
+.pseudolink:hover {
+	text-decoration: underline;
+}
+
+.pseudolink-sm {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #0066FF;
+	cursor: pointer;
+}
+
+.pseudolink-sm:hover {
+	text-decoration: underline;
+}
+
+.pseudoButton {
+	cursor: pointer;
+}
+
+.right {
+	float: right;
+}
+
+
+
+/* The dialogueContainer is the middle div inside floatContainer and is centered horizontally */
+.dialogueContainer {
+	text-align: left;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	position: fixed;
+	border: 3px solid #99BBDD;
+	border-radius: 10px;
+	-webkit-box-shadow: 5px 5px 5px 2px #1d1d1d;
+	-moz-box-shadow: 5px 5px 5px 2px #1d1d1d;
+	box-shadow: 5px 5px 5px 2px #1d1d1d;
+	background-color: #ECEFF8;
+	width: 990px;
+	display: inline-block;
+	vertical-align: middle;
+	z-index: 4;
+}
+/* ~ Fix for dialouge container */
+@media (max-width: 990px) {
+	.dialogueContainer {
+		width: 100%;
+		max-height: 100%;
+		overflow-y: auto;
+		border-radius: 0;
+	}
+}
+
+.dialogueContainer .header img {
+	float: right;
+	cursor: pointer;
+}
+
+/* Dialogue header and body elements */
+
+.dialogueContainer .header {
+	background-color: #99BBDD;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	padding: 5px 10px;
+}
+
+.dialogueContainer .header:hover {
+	cursor: move;
+}
+
+.dialogueContainer .header img.disabled:hover {
+	cursor: not-allowed !important;
+}
+
+.dialogueContainer .body {
+	font-size: 1em;
+	padding: 5px;
+	min-height: 175px;
+	_height: expression( this.scrollHeight > 649 ? "333px" : "auto" ); /* sets max-height for IE6 */
+	max-height: 650px; /* sets max-height value for all standards-compliant browsers */
+	overflow: auto;
+}
+
+.dialogueContainer .body .scroller {
+	height: 400px;
+	overflow: auto;
+	background-color: #ffffff;
+}
+
+.dialogueContainer .controls {
+	padding: 5px;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+.dialogueContainer .foot {
+	background-color: #99BBDD;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 13px;
+	/*font-weight: bold;*/
+	padding: 5px 00px;
+	text-align: center;
+}
+
+.dialogueContainer img.fadeDestroyDialogue {
+	cursor: pointer;
+}
+
+/* Dialogue content */
+
+.dialogueContainer .loadImage {
+	margin-top: 15px;
+	background: url('/admin/images/throbber2.gif') no-repeat center center;
+	min-height: 16px;
+}
+
+.dialogueContainer label {
+	margin-right: 10px;
+}
+
+.dialogueContainer .tabbody label {
+	float: left;
+}
+
+/* Center the button controllers in the popup */
+.dialogueContainer .controllers {
+	text-align: center;
+}
+
+.dialogueContainer .clipart {
+	float: left;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+.dialogueContainer .errors {
+	margin-left: 125px;
+}
+
+.dialogueContainer .errorlist {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	list-style-image: url('/images/red_arrow.png');
+	padding-left: 12px;
+}
+.dialogueContainer .errorlist li {
+	font-family: Arial;
+	font-size: 11px;
+	color: #ff0000;
+}
+
+
+.listitems {
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px;
+}
+
+.listitems li {
+	color: #000000;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	padding: 3px 0px;
+}
+
+.listitems li>div {
+	margin-left: 150px;
+}
+
+.listitems li .error {
+	color: #ff0000;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+.dialogue {
+	border: 3px #99bbdd solid;
+	margin-left: auto;
+	margin-right: auto;
+	background: #eceff8;
+}
+
+.centerdiv {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* A scrolling box that can expand to display progressive results */
+.statusBox {
+	overflow: auto;
+	min-height: 100px;
+	max-height: 400px;
+	width: 90%;
+	padding: 10px;
+	background-color: #dbdbdb;
+	margin-bottom: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+	box-shadow: 3px 3px 3px #1d1d1d;
+}
+
+.statusBox li .error {
+	color: #ff0000;
+}
+
+/* The lightbox is the shade layer that darkens the background when a popup appears */
+#greyout {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	z-index: 3;
+	display: none;
+	width: 1px;
+	height: 1px;
+	border: 0px;
+	margin: 0px;
+	border: solid 1px #000000;
+	background-color: #000000;
+	filter: alpha(opacity=80);
+	opacity: 0.5;
+	-moz-opacity: 0.5;
+}
+
+
+/* Tab interfaces and their corresponding tab bodies */
+.tabset {
+	margin-top: 5px;
+}
+
+.tabset .tabs ul {
+	list-style: none;
+	padding: 0px 0px 0px 0px;
+	margin: 0px;
+}
+
+.tabset .tabs li {
+	display: inline;
+	margin: 0px 6px 0px 0px;
+	padding: 2px 15px 1px 15px;
+	background-color: #bdbdbd;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	/* Font */
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000000;
+}
+
+.tabset .tabs li:hover {
+	cursor: pointer;
+}
+
+.tabset .tabs li.active {
+	background-color: #dbdbdb !important;
+}
+
+.tabset .tabs li a {
+	padding: 0px 0px 0px 0px;
+}
+
+.tabset .tabbody {
+	padding: 10px;
+	background-color: #dbdbdb;
+	margin-bottom: 10px;
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+	box-shadow: 3px 3px 3px #1d1d1d;
+}
+
+.tabset .hidden {
+	display: none;
+}
+
+
+.activeButton {
+	border-top: 1px solid #96d1f8;
+	background: #65a9d7;
+	background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#65a9d7));
+	background: -webkit-linear-gradient(top, #3e779d, #65a9d7);
+	background: -moz-linear-gradient(top, #3e779d, #65a9d7);
+	background: -ms-linear-gradient(top, #3e779d, #65a9d7);
+	background: -o-linear-gradient(top, #3e779d, #65a9d7);
+	padding: 5px 10px;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	-webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+	-moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+	box-shadow: rgba(0,0,0,1) 0 1px 0;
+	text-shadow: rgba(0,0,0,.4) 0 1px 0;
+	color: white;
+	font-size: 14px;
+	font-family: Georgia, serif;
+	text-decoration: none;
+	vertical-align: middle;
+}
+
+.activeButton:hover {
+	border-top-color: #28597a;
+	background: #28597a;
+	color: #ccc;
+}
+
+.activeButton:active {
+	border-top-color: #1b435e;
+	background: #1b435e;
+}
+
+
+/*
+* Auto-Suggestion List
+*/
+
+.suggestionList {
+	position: fixed; /* Functionality */
+	z-index: 1;
+	display: none;
+	padding: 0px; /* Appearance */
+	text-align: left;
+	background: #ffffff;
+	border-style: solid;
+	border-color: #7F9DB9;
+	border-top-width: 1px;
+	border-left-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+}
+
+.suggestionList ul {
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px;
+}
+
+.suggestionList ul li {
+	color: #000000;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	text-decoration: none;
+	font-size: 12px;
+	cursor: pointer;
+	padding: 3px 0px 3px 3px;
+}
+
+.suggestionList .subtext {
+	font-size: 11px;
+	color: #808080;
+	font-family: Arial;
+	float: right;
+	padding-right: 3px;
+	vertical-align: middle;
+}
+
+.suggestionList ul li:hover, .suggestionList ul li:hover .subtext {
+	background-color: #3366CC;
+	color: #ffffff;
+}
+
+/*
+* Popup Menu
+*/
+
+.popMenu {
+	background-color: #E7EFF7;
+	border: 1px solid #7B9EBD;
+	padding: 5px;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.popMenu ul {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+.popMenu a:link, .popMenu a:visited, .popMenu a:active {
+	color: #0066ff;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	text-decoration: none;
+	font-size: 12px;
+}
+
+.popMenu a:hover {
+	text-decoration: underline;
+}
+
+/*
+* Tables and Tabular Data
+*/
+
+.dialogueContainer table {
+	width: 100%;
+	border-width: 0px;
+}
+
+.dialogueContainer table thead tr {
+	background-color: #dbdbdb;
+}
+
+.dialogueContainer table th, .dialogueContainer table td {
+	padding: 3px;
+}

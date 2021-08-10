@@ -1,0 +1,32 @@
+
+body {
+	font-family: Arial, Verdana;
+	font-size: 10pt;
+	color: #000000;
+}
+
+/* General styles */
+font.general, p.general, span.general {
+	color: #000000;
+	text-decoration: none;
+	font-size: 12px;
+	font: 12px Arial, Verdana, Helvetica, sans-serif;
+}
+font.general-small, p.general-small, span.general-small {
+	color: #000000;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	text-decoration: none;
+	font-size: 11px;
+}
+a.general {
+	color: #0066FF;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	text-decoration: none;
+	font-size: 12px;
+}
+a.general-small {
+	color: #0066FF;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	text-decoration: none;
+	font-size: 11px;
+}

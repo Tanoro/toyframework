@@ -1,0 +1,516 @@
+
+/*
+* Page Structure
+****************/
+
+body {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 18px;
+	background-color: #CCCCCC;
+}
+
+#pageMenu {
+	width: 1560px;
+	margin-bottom: 20px;
+}
+
+#pageBody {
+	width: 1560px;
+}
+
+h3 {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+/*
+* Form Elements
+***************/
+
+form {
+	width: 100%;
+}
+
+textarea.editor {
+	height: 400px;
+	width: 800px;
+}
+
+.pseudolink {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	color: #0066FF;
+	cursor: pointer;
+}
+
+.pseudolink:hover {
+	text-decoration: underline;
+}
+
+.pseudobutton {
+	cursor: pointer;
+}
+
+.pseudobuttonTD {
+	cursor: pointer;
+}
+
+.pseudobuttonTD:hover {
+	background: #ffffff;
+}
+
+.dialogueBox {
+	background-color: #feff95;
+	border: 1px solid #99bbdd;
+	font-family: Arial,Verdana,Helvetica,sans-serif;
+	font-size: 12px;
+	margin: 10px auto;
+	padding: 5px 15px;
+	width: 1280px;
+}
+
+input.lgButton {
+	padding: 3px 24px 5px;
+	margin: 5px 0;
+	font-size: 23px;
+	height: 40px;
+	vertical-align: middle;
+	border-radius: 5px;
+	background-color: lightGrey;
+}
+
+button.lgButton {
+	padding: 3px 5px 3px;
+	margin: 0px 0px;
+	vertical-align: middle;
+	border-radius: 5px;
+	background-color: lightGrey;
+}
+
+img.fade {
+	opacity: 0.3;
+}
+
+
+/*
+* General Text
+**************/
+
+.general-small {
+	font-size: 10px;
+}
+
+/*
+* Table structures
+*/
+
+table.default {
+	width: 100%;
+	/*border: 3px #dbdbdb solid;*/
+	border-spacing: 0px;
+	border-collapse: separate;
+	margin-bottom: 10px;
+}
+
+table.default thead, table.default tbody, table.default tfoot {
+	font-family: Arial;
+	font-size: 12px;
+}
+
+table.default thead tr {
+	/*background-color: #dbdbdb;*/
+	font-size: 13px;
+	font-weight: bold;
+}
+
+table.default thead th.left {
+	text-align: left;
+}
+
+table.default thead th, table.default tbody td {
+	padding: 8px;
+}
+
+table.default tbody.details tr {
+	/*background-color: #dbdbdb;*/
+	text-align: left;
+	font-weight: normal;
+	font-size: 12px;
+}
+
+table.default tbody tr:nth-child(odd) {
+	background-color: #e2eaf6;
+}
+
+table.default tbody tr:nth-child(even) {
+	background-color: #eceff8;
+}
+
+table.default tfoot tr {
+	background-color: #99bbdd;
+	font-size: 13px;
+}
+
+table.default tr:hover td {
+	background-color: #e6e6e6;
+}
+
+/* Link colors */
+
+table.default a:visited {
+	color: #ff0000;
+}
+
+
+/*
+* List table
+************/
+
+table.listview {
+	border-collapse: collapse;
+}
+
+table.listview thead th, table.listview tbody td {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 13px;
+}
+
+table.listview thead tr {
+	border-bottom: 2px solid #000000;
+}
+
+table.listview tbody tr:hover {
+	background-color: #dbdbdb;
+}
+
+
+
+/*
+* Sub-field
+***********/
+
+.subfield {
+	width: 400px;
+	z-index: 1;
+	padding: 0px; /* Appearance */
+	text-align: left;
+	background: #ffffff;
+	border-style: solid;
+	border-color: #7F9DB9;
+	border-width: 1px;
+}
+
+.subfield ul {
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px;
+}
+
+.subfield ul {
+	color: #000000;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	text-decoration: none;
+	font-size: 12px;
+	width: 100%;
+}
+
+.subfield ul li {
+	padding: 3px;
+}
+
+.subfield ul li:hover {
+	background-color: #3366CC;
+	color: #ffffff;
+	cursor: pointer;
+}
+
+/*
+* Dialogues
+*/
+
+.warningBox {
+	background-color: #ff9595;
+	border: 2px solid #ff0000;
+	font-family: Arial,Verdana,Helvetica,sans-serif;
+	font-size: 14px;
+	margin: 0px auto;
+	padding: 5px 15px;
+	width: 80%;
+}
+
+/*
+* Alert Badges
+*/
+
+.alertBadge {
+	cursor: pointer;
+	padding: 0px 2px;
+	font-size: 11px;
+	font-weight: bold;
+	background: red;
+	color: white;
+	text-align: center;
+	display: inline-block;
+	min-width: 10px;
+	border-radius: 50%;
+	box-shadow: -1px 1px 2px rgba(0,0,0,0.6);
+	text-shadow: -1px 1px 2px rgba(0,0,0,0.6);
+}
+
+/*
+* Search box
+*/
+
+/* Tab navigation */
+div.pseudoTab {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	display: inline-block;
+	color: #000000;
+	padding: 3px 10px;
+	background-color: #dbdbdb;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+}
+
+.viewtabs ul {
+	list-style: none;
+	padding: 0px 0px 0px 0px;
+	margin: 0px;
+}
+
+.viewtabs li {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #000000;
+	display: inline;
+	margin: 0px 6px 0px 0px;
+	padding: 2px 15px 3px 15px;
+	background-color: #bdbdbd;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+}
+
+.viewtabs li.active {
+	background-color: #dbdbdb !important;
+}
+
+.viewtabs li a {
+	padding: 0px 0px 0px 0px;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000000;
+}
+
+.viewtabs li.float {
+	float: right;
+	margin-right: 0px !important;
+}
+
+/* Container box */
+.fieldsection {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	padding: 10px;
+	background-color: #dbdbdb;
+	margin-bottom: 10px;
+	border-radius: 3px;
+	box-shadow: 3px 3px 3px #1d1d1d;
+}
+
+.fieldsection:after {
+	content: ".";
+	visibility: hidden;
+	display: block;
+	height: 0;
+	clear: both;
+}
+
+.flattop {
+	border-top-left-radius: 0px !important;
+}
+
+/* Box floating rows */
+.fieldsection .row {
+	margin-bottom: 5px;
+}
+
+.fieldsection .row .halfbox {
+	width: 484px;
+	float: left;
+}
+
+.fieldsection .row .halfbox:not(:last-child) {
+	margin-right: 2px;
+}
+
+/* Box header */
+.fieldsection .row .header {
+	padding: 2px;
+	text-align: center;
+	background-color: #99BBDD;
+	border-top: 3px solid #99BBDD;
+	border-right: 3px solid #99BBDD;
+	border-left: 3px solid #99BBDD;
+	color: #000000;
+	font-size: 11px;
+	font-family: trebuche,verdana,geneva,lucida,arial,helvetica,sans-serif;
+	font-weight: bold;
+}
+
+.fieldsection .halfheader {
+	width: 474px;
+	float: left;
+}
+
+.fieldsection .leftfloat {
+	margin-right: 2px;
+}
+
+/* Box body */
+.fieldsection .content {
+	height: 100%;
+	padding: 2px;
+	border: 3px solid #99BBDD;
+	background-color: #ECEFF8;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+.fieldsection .content ul {
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	display: table;
+}
+
+.fieldsection .content ul li {
+	display: table-row;
+}
+
+.fieldsection .content ul li label {
+	text-align: right;
+	font-weight: bold;
+	display: table-cell;
+	width: 110px;
+	padding: 0px 30px 3px 0px;
+}
+
+.fieldsection .scrollBox {
+	max-height: 400px;
+	overflow: auto;
+	overflow-x: hidden;
+	background-color: #ffffff;
+	border: 2px #dbdbdb inset;
+}
+
+.fieldsection .left {
+	float: left;
+}
+
+.fieldsection .right {
+	float: right;
+}
+
+.halfWidth {
+	width: 50%;
+}
+
+/* Stores Report status links */
+
+.setActive {
+	color: #808080;
+	font-weight: bold;
+}
+
+.setInactive {
+	color: #007F0E;
+	font-weight: bold;
+}
+
+/* IP Count table structure */
+table.tableIPCount {
+	border-collapse: collapse;
+}
+
+table.tableIPCount td {
+	border: 1px solid #dbdbdb;
+	border-collapse: collapse;
+}
+
+table.tableIPCount tbody tr td:nth-child(1) {
+	width: 90px;
+	text-align: center;
+}
+
+table.tableIPCount tbody tr td:nth-child(2) {
+	max-width: 160px;
+	text-align: left;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+table.tableIPCount tbody tr td:nth-child(3) {
+	width: 90px;
+	text-align: center;
+}
+
+table.tableIPCount tbody tr td:nth-child(4) {
+	width: 160px;
+	text-align: left;
+}
+
+table.tableIPCount tbody tr td:nth-child(5) {
+	text-align: left;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+table.tableIPCount tbody tr td:nth-child(6) {
+	text-align: left;
+}
+
+
+/* System settings table */
+
+table.tableSettings {
+	border-collapse: collapse;
+}
+
+table.tableSettings td {
+	border: 1px solid #dbdbdb;
+	border-collapse: collapse;
+	padding: 10px !important;
+}
+
+/* Edit Store */
+.duplicate {
+	color: #808080;
+}
+
+/* Scrape Tool */
+
+.outputView {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: 12px;
+	width: 100%;
+	background-color: #ffffff;
+	border: 1px solid #000000;
+	overflow: scroll;
+}
+.curlcontainer {
+	height: 200px;
+}
+.htmlcontainer {
+	height: 700px;
+}
+
+/* System Status Page */
+
+ul.system li {
+	font-size: 14px;
+	margin-bottom: 5px;
+}

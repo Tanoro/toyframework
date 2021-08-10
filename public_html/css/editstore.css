@@ -1,0 +1,9 @@
+
+td.editable {
+	/*cursor: copy;*/
+	cursor: url(/cursors/flash-8-pencil.cur), auto;
+}
+
+td.editable:hover {
+	background-color: #ffffff !important;
+}

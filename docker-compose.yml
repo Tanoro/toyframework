@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  web:
+    container_name: toyframework
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    restart: always
+    environment:
+      - PHP_UPLOAD_MAX_FILESIZE=10M
+      - PHP_POST_MAX_SIZE=10M
+    networks:
+      - mariadb10_SharedMariaDB
+    ports:
+      - 8080:80
+    volumes:
+      - .:/var/www
+      - ./logs/apache2:/var/log/apache2
+networks:
+  mariadb10_SharedMariaDB:
+    external: true
