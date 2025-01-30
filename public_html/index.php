@@ -26,5 +26,3 @@ spl_autoload_register(function($class) {
 *************************/
 
 $Application = new Application($config);
-
-?>
