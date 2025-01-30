@@ -1,19 +1,9 @@
 # Ignored directories
-/.bash_history
-/.composer
-/.ftpquota
-/.htpasswds
-/.idea
-/.vscode
-/.well-known
-/cgi-bin
 /config/*
-/db/*/
 !/db/migrations
 /logs
+/node_modules
 /vendor
-/temp
-/composer.lock
 
 # Ignore local configurations
 /config/local.js
@@ -24,26 +14,9 @@
 # Skip all of these file types no matter where they are
 **/error_log
 **/index.html
-**/*.csv
-**/*.doc
-**/*.docx
-**/*.mp4
-**/*.pdf
-**/*.xml
-**/*.xls
-**/*.xlsx
-**/*.zip
-**/*.gz
-**/apilog.txt
 
 # Ignore logging
 /logs/*
 
 # Smarty caches
 **/templates_c
-
-# Code Editor and VM files
-**/*cloudimg-console.log
-**/*code-workspace
-
-**/.ea-php-cli.cache
