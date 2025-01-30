@@ -1,0 +1,119 @@
+name: Update VERSION File
+
+on:
+    push:
+        branches:
+            - master # Trigger workflow on commits to the master branch
+
+jobs:
+    update-version:
+        runs-on: ubuntu-latest
+
+        steps:
+            # Step 1: Checkout the repository
+            - name: Checkout code
+                uses: actions/checkout@v3
+
+            # Step 2: Install Composer Dependencies (non-dev)
+            - name: Install Composer dependencies
+            run: |
+                composer install --no-dev --prefer-dist --optimize-autoloader
+
+            # Step 3: Install NPM Dependencies (non-dev)
+            - name: Install NPM dependencies
+                run: |
+                    npm ci --production
+
+            # Step 4: Get the latest tag
+            - name: Fetch all tags
+                run: git fetch --tags --force
+
+            - name: Get Latest Git Tag
+                id: get_version
+                run: |
+                    # Get the latest tag that matches a version pattern
+                    TAG=$(git describe --tags --abbrev=0)
+                    echo "version=${TAG}" >> $GITHUB_ENV
+
+            # Step 5: Update the VERSION file
+            - name: Update VERSION file
+                run: |
+                    echo "${{ env.version }}\n" > VERSION
+                    git config --global user.name "GitHub Actions"
+                    git config --global user.email "actions@github.com"
+                    git add VERSION
+                    git commit -m "Saving VERSION to ${{ env.version }}"
+                    git push origin HEAD
+
+            # Step 6: Verify VERSION file content (Optional)
+            - name: Display VERSION file
+                run: cat VERSION
+
+            # Step 7: Publish checksum file and signature
+            - name: Create Release Package
+                run: |
+                    # Create a ZIP archive of the repository
+                    zip -r release.zip .
+
+            - name: Generate Checksum
+                run: |
+                    # Generate a SHA256 checksum for the ZIP archive
+                    sha256sum release.zip > release.zip.sha256
+
+            - name: Sign Checksum
+                env:
+                    GPG_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+                    GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+                run: |
+                    # Import the GPG private key
+                    echo "$GPG_KEY" | gpg --import
+                    # Create a detached signature for the checksum file
+                    echo "$GPG_PASSPHRASE" | gpg --batch --yes --passphrase-fd 0 --armor --detach-sign -o release.zip.sha256.asc release.zip.sha256
+
+            # Publish Release
+            - name: Publish Release
+                uses: actions/create-release@v1
+                with:
+                    tag_name: ${{ env.version }}
+                    release_name: "${{ env.version }} Release"
+                    body: "Release package for v${{ env.version }}."
+                    draft: false
+                    prerelease: true
+                    token: ${{ secrets.GITHUB_TOKEN }}
+
+            # Attach release assets
+            - name: Upload Release Assets
+                uses: actions/upload-release-asset@v1
+                with:
+                    repo_token: ${{ secrets.GITHUB_TOKEN }}
+                    release_id: ${{ steps.create-release.outputs.id }}
+                    asset_path: release.zip
+                    asset_name: release.zip
+                    asset_content_type: application/zip
+
+            - name: Upload Checksum File
+                uses: actions/upload-release-asset@v1
+                with:
+                    repo_token: ${{ secrets.GITHUB_TOKEN }}
+                    release_id: ${{ steps.create-release.outputs.id }}
+                    asset_path: release.zip.sha256
+                    asset_name: release.zip.sha256
+                    asset_content_type: text/plain
+
+            - name: Upload Signature File
+                uses: actions/upload-release-asset@v1
+                with:
+                    repo_token: ${{ secrets.GITHUB_TOKEN }}
+                    release_id: ${{ steps.create-release.outputs.id }}
+                    asset_path: release.zip.sha256.asc
+                    asset_name: release.zip.sha256.asc
+                    asset_content_type: text/plain
+
+            - name: Upload Public Key
+                uses: actions/upload-release-asset@v1
+                with:
+                    repo_token: ${{ secrets.GITHUB_TOKEN }}
+                    release_id: ${{ steps.create-release.outputs.id }}
+                    asset_path: public-key.asc
+                    asset_name: public-key.asc
+                    asset_content_type: text/plain
