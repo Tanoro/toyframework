@@ -14,12 +14,20 @@ jobs:
             - name: Checkout code
                 uses: actions/checkout@v3
 
-            # Step 2: Install dependencies
-            - name: Install Dependencies
-                run: |
-                    echo "No dependencies needed for this project."
+            # Step 2: Install Composer Dependencies (non-dev)
+            - name: Install Composer dependencies
+            run: |
+                composer install --no-dev --prefer-dist --optimize-autoloader
 
-            # Step 3: Get the latest tag
+            # Step 3: Install NPM Dependencies (non-dev)
+            - name: Install NPM dependencies
+                run: |
+                    npm ci --production
+
+            # Step 4: Get the latest tag
+            - name: Fetch all tags
+                run: git fetch --tags --force
+
             - name: Get Latest Git Tag
                 id: get_version
                 run: |
@@ -27,21 +35,21 @@ jobs:
                     TAG=$(git describe --tags --abbrev=0)
                     echo "version=${TAG}" >> $GITHUB_ENV
 
-            # Step 4: Update the VERSION file
+            # Step 5: Update the VERSION file
             - name: Update VERSION file
                 run: |
                     echo "${{ env.version }}\n" > VERSION
                     git config --global user.name "GitHub Actions"
                     git config --global user.email "actions@github.com"
                     git add VERSION
-                    git commit -m "Update VERSION to ${{ env.version }}"
+                    git commit -m "Saving VERSION to ${{ env.version }}"
                     git push origin HEAD
 
-            # Step 5: Verify VERSION file content (Optional)
+            # Step 6: Verify VERSION file content (Optional)
             - name: Display VERSION file
                 run: cat VERSION
 
-            # Step 5: Publish checksum file and signature
+            # Step 7: Publish checksum file and signature
             - name: Create Release Package
                 run: |
                     # Create a ZIP archive of the repository
@@ -68,11 +76,12 @@ jobs:
                 with:
                     tag_name: ${{ env.version }}
                     release_name: "${{ env.version }} Release"
-                    body: "This is the release package for v${{ env.version }}."
+                    body: "Release package for v${{ env.version }}."
                     draft: false
                     prerelease: true
                     token: ${{ secrets.GITHUB_TOKEN }}
 
+            # Attach release assets
             - name: Upload Release Assets
                 uses: actions/upload-release-asset@v1
                 with:
