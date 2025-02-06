@@ -9,10 +9,10 @@ class URL
 	public $error = null;
 
 	/**
-	* Parse URL into parts; extends beyond PHP parse_url
-	*
-	* @param	string			URL to parse
-	**/
+	 * Parse URL into parts; extends beyond PHP parse_url
+	 *
+	 * @param	string			URL to parse
+	*/
 	public function parse($url)
 	{
 		$parsed_url = parse_url($url);
@@ -54,7 +54,7 @@ class URL
 
 		return $parsed_url;
 	}
-	
+
 	/**
 	* Process TLD list
 	**/
@@ -79,7 +79,7 @@ class URL
 				return $var;
 			}
 		});
-		
+
 		// Sort longest to shortest
 		usort($this->tldsArray, function($a, $b){
 			return strlen($b)-strlen($a);
@@ -87,14 +87,14 @@ class URL
 
 		return true;
 	}
-	
+
 	/**
 	* Get TLD content, caching a file
 	**/
 	private function getTLDContent()
 	{
 		$tld_file_path = __ROOT__ . '/' . $this->tld_file;
-		
+
 		if (file_exists($tld_file_path) === false)
 		{
 			$tlds_content = file_get_contents($this->tld_url);
