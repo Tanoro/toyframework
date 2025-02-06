@@ -56,8 +56,8 @@ class URL
 	}
 
 	/**
-	* Process TLD list
-	**/
+	 * Process TLD list
+	*/
 	public function getTLDArray()
 	{
 		if (sizeof($this->tldsArray) == 0)
