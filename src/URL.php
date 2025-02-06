@@ -89,8 +89,8 @@ class URL
 	}
 
 	/**
-	* Get TLD content, caching a file
-	**/
+	 * Get TLD content, caching a file
+	*/
 	private function getTLDContent()
 	{
 		$tld_file_path = __ROOT__ . '/' . $this->tld_file;
