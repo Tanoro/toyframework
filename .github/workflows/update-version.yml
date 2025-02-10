@@ -28,10 +28,10 @@ jobs:
     - name: Fetch all tags
       run: git fetch --tags --force
 
+    # Get the latest tag that matches a version pattern
     - name: Get Latest Git Tag
       id: get_version
       run: |
-        # Get the latest tag that matches a version pattern
         TAG=$(git describe --tags --abbrev=0)
         echo "version=${TAG}" >> $GITHUB_ENV
 
@@ -49,25 +49,23 @@ jobs:
     - name: Display VERSION file
       run: cat VERSION
 
-    # Step 7: Publish checksum file and signature
+    # Step 7: Create a ZIP archive of the repository
     - name: Create Release Package
       run: |
-        # Create a ZIP archive of the repository
         zip -r release.zip .
 
+    # Generate a SHA256 checksum for the ZIP archive
     - name: Generate Checksum
       run: |
-        # Generate a SHA256 checksum for the ZIP archive
         sha256sum release.zip > release.zip.sha256
 
+    # Import the GPG private key
     - name: Sign Checksum
       env:
         GPG_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
         GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
       run: |
-        # Import the GPG private key
         echo "$GPG_KEY" | gpg --import
-        # Create a detached signature for the checksum file
         echo "$GPG_PASSPHRASE" | gpg --batch --yes --passphrase-fd 0 --armor --detach-sign -o release.zip.sha256.asc release.zip.sha256
 
     # Publish Release
