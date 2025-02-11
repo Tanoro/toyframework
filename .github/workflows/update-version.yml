@@ -70,7 +70,7 @@ jobs:
         echo "$GPG_KEY" | gpg --import
         echo "$GPG_PASSPHRASE" | gpg --batch --yes --passphrase-fd 0 --armor --detach-sign -o release.zip.sha256.asc release.zip.sha256
 
-    # Publish Release
+    # Publish Git Release
     - name: Publish Release
       uses: actions/create-release@v1
       with:
@@ -81,7 +81,7 @@ jobs:
         prerelease: true
         token: ${{ secrets.GITHUB_TOKEN }}
 
-    # Attach release assets
+    # Attach release ZIP archive
     - name: Upload Release Assets
       uses: actions/upload-release-asset@v1
       with:
@@ -91,6 +91,7 @@ jobs:
         asset_name: release.zip
         asset_content_type: application/zip
 
+    # Attach Checksum file to the release
     - name: Upload Checksum File
       uses: actions/upload-release-asset@v1
       with:
@@ -100,6 +101,7 @@ jobs:
         asset_name: release.zip.sha256
         asset_content_type: text/plain
 
+    # Attach signature file to the release
     - name: Upload Signature File
       uses: actions/upload-release-asset@v1
       with:
@@ -109,11 +111,12 @@ jobs:
         asset_name: release.zip.sha256.asc
         asset_content_type: text/plain
 
+    # Upload public key from the /docs directory
     - name: Upload Public Key
       uses: actions/upload-release-asset@v1
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        release_id: ${{ steps.create-release.outputs.id }}
-        asset_path: public-key.asc
+        release_id: ${{ steps.create_release.outputs.id }}
+        asset_path: docs/public-key.asc
         asset_name: public-key.asc
         asset_content_type: text/plain
