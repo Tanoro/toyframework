@@ -13,6 +13,8 @@ jobs:
     # Step 1: Checkout the repository
     - name: Checkout code
       uses: actions/checkout@v3
+      with:
+        fetch-depth: 0  # Ensures full history and all tags are fetched
 
     # Step 2: Install Composer Dependencies (non-dev)
     - name: Install Composer dependencies
