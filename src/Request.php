@@ -2,7 +2,9 @@
 
 class Request
 {
-	// The construct method can accommodate custom request methods
+    /**
+     * The construct method can accommodate custom request methods
+    */
 	function __construct()
 	{
 		// Implenting RESTful method in PHP
