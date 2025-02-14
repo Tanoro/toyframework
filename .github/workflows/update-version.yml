@@ -31,6 +31,11 @@ jobs:
           echo "GPG_PASSPHRASE is present."
         fi
 
+    # Add license keys for paid dependencies
+    - name: Configure NPM Authentication
+      run: |
+        echo "//npm.fontawesome.com/:_authToken=${{ secrets.FONT_AWESOME_NPM_TOKEN }}" > ~/.npmrc
+
     # Step 1: Checkout the repository
     - name: Checkout code
       uses: actions/checkout@v3
@@ -61,7 +66,7 @@ jobs:
     # Step 5: Update the VERSION file
     - name: Update VERSION file
       run: |
-        echo "${{ env.version }}\n" > VERSION
+        echo -e "${{ env.version }}\n" > VERSION
         git config --global user.name "GitHub Actions"
         git config --global user.email "actions@github.com"
         git add VERSION
@@ -72,10 +77,10 @@ jobs:
     - name: Display VERSION file
       run: cat VERSION
 
-    # Step 7: Create a ZIP archive of the repository
+    # Step 7: Create a ZIP archive of the repository (exclude unnecessary folders)
     - name: Create Release Package
       run: |
-        zip -r release.zip .
+        zip -r release.zip . -x ".git/*" ".github/*" "docs/*"
 
     # Generate a SHA256 checksum for the ZIP archive
     - name: Generate Checksum
