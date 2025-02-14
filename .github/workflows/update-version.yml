@@ -86,7 +86,7 @@ jobs:
     - name: Sign Checksum
       run: |
         echo "${{ secrets.GPG_PRIVATE_KEY }}" | gpg --batch --import
-        echo "${{ secrets.GPG_PASSPHRASE }}" | gpg --batch --yes --passphrase-fd 0 --armor --detach-sign -o release.zip.sha256.asc release.zip.sha256
+        echo "${{ secrets.GPG_PASSPHRASE }}" | gpg --pinentry-mode loopback --batch --yes --passphrase-fd 0 --armor --detach-sign -o release.zip.sha256.asc release.zip.sha256
 
     # Publish Git Release
     - name: Publish Release
