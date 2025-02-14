@@ -106,7 +106,6 @@ jobs:
       uses: actions/upload-release-asset@v1
       with:
         upload_url: ${{ steps.publish_release.outputs.upload_url }}
-        release_id: ${{ steps.publish_release.outputs.id }}
         asset_path: release.zip
         asset_name: release.zip
         asset_content_type: application/zip
@@ -116,7 +115,6 @@ jobs:
       uses: actions/upload-release-asset@v1
       with:
         upload_url: ${{ steps.publish_release.outputs.upload_url }}
-        release_id: ${{ steps.publish_release.outputs.id }}
         asset_path: release.zip.sha256
         asset_name: release.zip.sha256
         asset_content_type: text/plain
@@ -126,7 +124,6 @@ jobs:
       uses: actions/upload-release-asset@v1
       with:
         upload_url: ${{ steps.publish_release.outputs.upload_url }}
-        release_id: ${{ steps.publish_release.outputs.id }}
         asset_path: release.zip.sha256.asc
         asset_name: release.zip.sha256.asc
         asset_content_type: text/plain
@@ -136,7 +133,6 @@ jobs:
       uses: actions/upload-release-asset@v1
       with:
         upload_url: ${{ steps.publish_release.outputs.upload_url }}
-        release_id: ${{ steps.publish_release.outputs.id }}
         asset_path: docs/public-key.asc
         asset_name: public-key.asc
         asset_content_type: text/plain
