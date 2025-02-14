@@ -10,6 +10,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+    # Pre-check! Don't continue if there is no private key setup in the repo
+    - name: Debug Secret Output
+      run: |
+        if [ -z "${{ secrets.GPG_PRIVATE_KEY }}" ]; then
+          echo "GPG_PRIVATE_KEY is missing! Configure your GPG Key as a repository secret."
+          exit 1
+        else
+          echo "GPG_PRIVATE_KEY is present."
+        fi
+
     # Step 1: Checkout the repository
     - name: Checkout code
       uses: actions/checkout@v3
