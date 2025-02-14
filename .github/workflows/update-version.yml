@@ -63,12 +63,11 @@ jobs:
 
     # Import the GPG private key
     - name: Sign Checksum
-      env:
-        GPG_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
-        GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
       run: |
-        echo "$GPG_KEY" | gpg --import
-        echo "$GPG_PASSPHRASE" | gpg --batch --yes --passphrase-fd 0 --armor --detach-sign -o release.zip.sha256.asc release.zip.sha256
+        echo "${{ secrets.GPG_PRIVATE_KEY }}" | base64 --decode > private.key
+        gpg --batch --yes --passphrase "${{ secrets.GPG_PASSPHRASE }}" --import private.key
+        rm private.key
+        gpg --armor --sign --output release.zip.sha256.asc --detach-sign release.zip.sha256
 
     # Publish Git Release
     - name: Publish Release
