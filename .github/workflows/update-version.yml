@@ -34,7 +34,8 @@ jobs:
     # Add license keys for paid dependencies
     - name: Configure NPM Authentication
       run: |
-        echo "//npm.fontawesome.com/:_authToken=${{ secrets.FONT_AWESOME_NPM_TOKEN }}" > .npmrc
+        echo "@fortawesome:registry=https://npm.fontawesome.com/" > ~/.npmrc
+        echo "//npm.fontawesome.com/:_authToken=${{ secrets.FONT_AWESOME_NPM_TOKEN }}" > ~/.npmrc
 
     # Step 1: Checkout the repository
     - name: Checkout code
