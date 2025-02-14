@@ -11,14 +11,24 @@ jobs:
 
     steps:
 
-    # Pre-check! Don't continue if there is no private key setup in the repo
-    - name: Debug Secret Output
+    # Pre-checks! Don't continue if GPG key not configured
+    - name: Check Private Key
       run: |
         if [ -z "${{ secrets.GPG_PRIVATE_KEY }}" ]; then
           echo "GPG_PRIVATE_KEY is missing! Configure your GPG Key as a repository secret."
           exit 1
         else
           echo "GPG_PRIVATE_KEY is present."
+        fi
+
+    # Ensure GPG Passphrase is set
+    - name: Check Secret Passphrase
+      run: |
+        if [ -z "${{ secrets.GPG_PASSPHRASE }}" ]; then
+          echo "GPG_PASSPHRASE is missing! Configure your GPG Passphrase as a repository secret."
+          exit 1
+        else
+          echo "GPG_PASSPHRASE is present."
         fi
 
     # Step 1: Checkout the repository
@@ -74,12 +84,9 @@ jobs:
 
     # Import the GPG private key
     - name: Sign Checksum
-      env:
-        GPG_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
-        GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
       run: |
-        echo "$GPG_KEY" | gpg --import
-        echo "$GPG_PASSPHRASE" | gpg --batch --yes --passphrase-fd 0 --armor --detach-sign -o release.zip.sha256.asc release.zip.sha256
+        echo "${{ secrets.GPG_PRIVATE_KEY }}" | gpg --batch --import
+        echo "${{ secrets.GPG_PASSPHRASE }}" | gpg --batch --yes --passphrase-fd 0 --armor --detach-sign -o release.zip.sha256.asc release.zip.sha256
 
     # Publish Git Release
     - name: Publish Release
