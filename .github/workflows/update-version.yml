@@ -52,7 +52,6 @@ jobs:
     - name: Install NPM dependencies
       run: |
         npm ci --production
-        rm .npmrc
 
     # Step 4: Get the latest tag
     - name: Fetch all tags
